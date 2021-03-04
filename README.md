@@ -16,8 +16,14 @@
 
 ## 我是开发者
 
-PluginExmple插件入口
+[PluginExmple插件入口](https://github.com/MotdPlatform/MotdInfoAPI)
 
 ## 特别感谢！
 
 [若水](https://github.com/SmallasWater)提供的**Nukkit**客户端组件支持
+
+## 展望未来
+
+- OAuth接口（可能将在Socket完成）
+- GS4 Query进行安全比对
+- 附条件技术加分
