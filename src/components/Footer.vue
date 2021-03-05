@@ -36,7 +36,7 @@ export default {
   position: relative;
   margin-top: -1px;
   height: 120px;
-  background: url(."https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/ImgBedbg-wool-dark.png");
+  background: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/ImgBedbg-wool-dark.png");
   color: #fff;
   box-shadow: 0 0 5px 0 #000;
   padding: 10px 0;
