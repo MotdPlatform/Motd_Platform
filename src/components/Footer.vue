@@ -36,7 +36,7 @@ export default {
   position: relative;
   margin-top: -1px;
   height: 120px;
-  background: url(../assets/bg-wool-dark.png);
+  background: url(."https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/ImgBedbg-wool-dark.png");
   color: #fff;
   box-shadow: 0 0 5px 0 #000;
   padding: 10px 0;
@@ -45,7 +45,7 @@ export default {
 
 .footer__cover {
   position: absolute;
-  background: url(../assets/bookshelf.gif);
+  background: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/bookshelf.gif");
   bottom: 0;
   height: 28px;
   width: 100%;

@@ -109,7 +109,7 @@ export default {
     border-image-width: 6px;
     border-image-repeat: repeat;
     border-image-slice: 4;
-    border-image-source: url(../assets/alert.png);
+    border-image-source: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/ImgBedalert.png");
     -webkit-box-shadow: 0 0 4px 0 rgb(0 0 0 / 50%);
     box-shadow: 0 0 4px 0 rgb(0 0 0 / 50%);
 }

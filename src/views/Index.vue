@@ -12,7 +12,7 @@
         >
           <div class="header">
             <div class="motd">
-              <img class="status" src="../assets/online.gif" />{{ i.delay }}ms
+              <img class="status" src="https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13ceadonline.gif" />{{ i.delay }}ms
               {{ i.motd }}
             </div>
             <div class="info">
@@ -60,7 +60,7 @@
               class="btn block"
               :href="info.link"
               target="_blank"
-              style="margin-top: 40px; padding: 10px 0px"
+              style="margin-top: 40px"
               >加入服务器</a
             >
           </div>
@@ -286,7 +286,7 @@ p.empty {
 .container.list .info {
   overflow: hidden;
   white-space: nowrap;
-  max-width: 90%;
+  max-width: 80%;
   display: flex;
   color: #5a5a5a;
   font-size: 13px;
@@ -318,25 +318,27 @@ p.empty {
 }
 
 .container.card div.badges {
-  border-left: 3px double #c6c6c6;
-  padding-left: 6px;
-  margin: 10px 0;
-}
-.container.card .plugins {
-  position: relative;
-  border-left: 3px double #c6c6c6;
+  border-left: 3px solid #34aa2f;
   padding-left: 6px;
   margin: 10px 0;
 }
 
-.container.card .plugins:before {
+.container.card .plugins:before,
+.container.card .players:before {
   position: absolute;
-  content: "插件列表";
   right: 0;
   background: #383838;
-  top: -18px;
+  top: 0;
   padding: 0px 4px;
-  border-right: 2px solid #34aa2f;
+  border-right: 3px solid #34aa2f;
+}
+
+.container.card .players:before {
+  content: "玩家列表";
+}
+
+.container.card .plugins:before {
+  content: "插件列表";
 }
 
 .container.card .players {
@@ -346,13 +348,10 @@ p.empty {
   margin: 10px 0;
 }
 
-.container.card .players:before {
-  position: absolute;
-  content: "玩家列表";
-  right: 0;
-  background: #383838;
-  top: -18px;
-  padding: 0px 4px;
-  border-right: 2px solid #34aa2f;
+.container.card .plugins {
+  position: relative;
+  border-left: 3px double #c6c6c6;
+  padding-left: 6px;
+  margin: 10px 0;
 }
 </style>

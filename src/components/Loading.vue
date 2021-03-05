@@ -58,7 +58,7 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
-  background: url("../assets/tp_out.gif");
+  background: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/ImgBedtp_out.gif");
   background-blend-mode: color;
   background-color: rgb(0 0 0 / 40%);
   display: flex;
@@ -81,7 +81,7 @@ export default {
   left: 55px;
   width: 50px;
   height: 50px;
-  background: url(../assets/logo.png);
+  background: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/MOTDlogo.png");
   border-radius: 2px;
   transform: rotate(45deg);
   animation: loading 0.8s infinite;

@@ -57,7 +57,8 @@ export default {
             this.TmpPlatformData = response.data.data;
             if (this.$utils.isEmpty(this.TmpData["tips"])) this.updateTips();
 
-            if (this.$utils.isEmpty(this.TmpData["badges"])) this.updateBadges();
+            if (this.$utils.isEmpty(this.TmpData["badges"]))
+              this.updateBadges();
 
             if (!this.guide) this.updateList();
           }
@@ -142,7 +143,7 @@ export default {
 <style>
 @font-face {
   font-family: "Zpix";
-  src: url(./assets/zpix.woff) format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13ceadzpix.woff") format("woff");
 }
 
 * {
@@ -190,7 +191,7 @@ a:hover {
   bottom: 0;
   left: 0;
   right: 0;
-  background: url(./assets/bg.jpg) no-repeat;
+  background: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/bg.jpg") no-repeat;
   background-color: #969696;
   background-position: left;
   background-size: cover;
@@ -207,7 +208,7 @@ a:hover {
   color: #fff;
   text-shadow: -3px 3px 3px #383838;
   overflow: hidden;
-  background: url(./assets/tp_out.gif);
+  background: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/ImgBedtp_out.gif");
   display: flex;
   justify-content: center;
   align-items: center;
@@ -244,7 +245,7 @@ a:hover {
   text-transform: uppercase;
   letter-spacing: 1px;
   white-space: unset;
-  padding: 1.18rem 3.05rem;
+  padding: 1rem 3.05rem;
   text-decoration: none;
   font-weight: 700;
   border-radius: 0;
@@ -268,6 +269,10 @@ a:hover {
 
 .btn.block {
   width: 100%;
+}
+
+a.btn {
+  padding: 0.7rem 0;
 }
 
 .btn::before {
@@ -323,17 +328,16 @@ input {
   transition: none;
   font-weight: 400;
   line-height: 1.5;
-  color: #ffffff;
+  color: #d9ff34!important;
   margin-bottom: 12px;
-  background: #9e9e9e;
-  border-radius: 6px;
+  background: #6b6b6b;
   vertical-align: -webkit-baseline-middle;
+  border-left: 6px solid #34aa2f;
 }
 
 input:focus {
   position: relative;
-  color: #404040;
-  background-color: #fff;
+  background-color: #000;
   outline: 0;
   box-shadow: 0 0 3px 1px #397ad1, inset 0 0 2px 1px #397ad1;
   z-index: 3;
@@ -350,14 +354,14 @@ label {
   position: absolute;
   width: 80%;
   max-width: 600px;
-  background: url(./assets/bg-wool-dark.png);
+  background: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/ImgBedbg-wool-dark.png");
   padding: 25px;
   border-radius: 5px;
   border: 2px solid rgb(85, 85, 85);
   border-image-width: 10px;
   border-image-repeat: repeat;
   border-image-slice: 40;
-  border-image-source: url(./assets/panel.png);
+  border-image-source: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/ImgBedpanel.png");
   top: 20px;
   z-index: 3;
 }
@@ -381,7 +385,7 @@ label {
 
 .model__cover {
   /* filter: blur(4px);
-  background: url(./assets/design2.png) no-repeat;
+  background: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/ImgBeddesign2.png") no-repeat;
   background-position-y: bottom;
   background-position-x: right;
   background-blend-mode: hard-light; */
@@ -501,7 +505,7 @@ div.divider {
 }
 
 .badge.deep-purple {
-  background-color: #673AB7;
+  background-color: #673ab7;
 }
 
 .badge.red {
@@ -509,27 +513,27 @@ div.divider {
 }
 
 .badge.pink {
-  background-color: #E91E63;
+  background-color: #e91e63;
 }
 
 .badge.purple {
-  background-color: #9C27B0;
+  background-color: #9c27b0;
 }
 
 .badge.indigo {
-  background-color: #3F51B5;
+  background-color: #3f51b5;
 }
 
 .badge.blue {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 .badge.light-blue {
-  background-color: #03A9F4;
+  background-color: #03a9f4;
 }
 
 .badge.cyan {
-  background-color: #00BCD4;
+  background-color: #00bcd4;
 }
 
 .badge.teal {
@@ -537,31 +541,31 @@ div.divider {
 }
 
 .badge.green {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 .badge.light-green {
-  background-color: #8BC34A;
+  background-color: #8bc34a;
 }
 
 .badge.lime {
-  background-color: #CDDC39;
+  background-color: #cddc39;
 }
 
 .badge.yellow {
-  background-color: #FFEB3B;
+  background-color: #ffeb3b;
 }
 
 .badge.amber {
-  background-color: #FFC107;
+  background-color: #ffc107;
 }
 
 .badge.orange {
-  background-color: #FF9800;
+  background-color: #ff9800;
 }
 
 .badge.deep-orange {
-  background-color: #FF5722;
+  background-color: #ff5722;
 }
 
 .badge.brown {
@@ -569,11 +573,11 @@ div.divider {
 }
 
 .badge.grey {
-  background-color: #9E9E9E;
+  background-color: #9e9e9e;
 }
 
 .badge.blue-grey {
-  background-color: #607D8B;
+  background-color: #607d8b;
 }
 
 /* transition */
