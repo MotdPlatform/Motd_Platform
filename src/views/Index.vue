@@ -410,15 +410,6 @@ p.empty {
   transition: all 0s;
 }
 
-.container.list ul li:hover {
-  background: #eaeaea;
-  transform: scale(1.03);
-  box-shadow: 0 0 3px 0px #5d5d5d;
-  border-bottom: unset;
-  padding-bottom: 6px;
-  z-index: 1;
-}
-
 .container.list ul li:nth-child(odd) {
   background: #e0e0e0;
 }
@@ -548,6 +539,28 @@ p.empty {
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
+  transition: all 0s;
+}
+
+@media screen and (min-height: 720px) {
+  .container.list ul li:hover {
+    background-image: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/ImgBedbg-wool-dark.png");
+    background-size: auto 300%;
+    transform: scale(1.04, 1.1);
+    border: unset;
+    margin-bottom: 1px;
+    box-shadow: 0 0 5px 0 #1d1d1d;
+    color: #fff;
+    z-index: 1;
+  }
+
+  .container.list ul li:hover .info {
+    color: #fff;
+  }
+
+  .container.list ul li:hover div.ranking {
+    background: #644116;
+  }
 }
 
 .container.card div.badges {

@@ -515,6 +515,7 @@ div.divider {
 
 .badge.border {
   position: relative;
+  margin-left: 2px;
   border-radius: 2px;
   background: #484848;
 }
