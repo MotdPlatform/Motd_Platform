@@ -68,7 +68,7 @@ export default {
 
   mounted() {
     this.guide = localStorage.getItem("auth") ? false : true;
-    
+
     document.onkeydown = function () {
       if (
         window.event.keyCode == 116 || //屏蔽 F5
@@ -650,31 +650,39 @@ div.divider {
   opacity: 0.4;
 }
 
-/* .progress {
-  position: relative;
+.kdui-mc-progress {
   width: 100%;
-  height: 10px;
+  height: 14px;
+  padding: 0 4px;
+  max-width: 100% !important;
+  background-size: contain;
+  background-position: left, center, right;
+  background-repeat: no-repeat, repeat-x, no-repeat;
+  background-clip: border-box, content-box, border-box;
+  background-image: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210315170916.png"),
+    url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210315170933.png"),
+    url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210315170943.png");
   overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
 }
 
-.progress__bar {
+.kdui-mc-progress-determinate {
+  padding: 0 4px;
+  top: 0;
+  left: 0;
+  bottom: 0;
   position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210312231817.png");
-  background-size: auto 100%;
+  box-sizing: border-box;
+  max-width: 100% !important;
+  background-size: contain;
+  background-position: left, center, right;
+  background-repeat: no-repeat, repeat-x, no-repeat;
+  background-clip: border-box, content-box, border-box;
+  background-image: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210315171004.png"),
+    url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210315171014.png"),
+    url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210315171029.png");
 }
-
-.progress__determinate {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  background-image: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210312231822.png");
-  background-size: auto 100%;
-} */
 
 .kdui-mc-progress {
   margin: 8px 0;

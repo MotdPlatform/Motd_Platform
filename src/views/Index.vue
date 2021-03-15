@@ -29,6 +29,7 @@
             <!-- <div class="badge primary gamemode">{{ i.gamemode }}</div> -->
             <div v-if="$parent.done" v-html="drawBadges(index)"></div>
           </div>
+          <div class="ranking">{{ index + 1 }}</div>
         </li>
       </ul>
     </div>
@@ -396,28 +397,30 @@ p.empty {
   padding: 0px;
   margin: 0;
   list-style: none;
-  border-top: 10px solid #9e6620;
+  /* border-top: 10px solid #9e6620; */
   box-shadow: 0 0 4px 0 rgb(0 0 0 / 50%);
 }
 
 .container.list ul li {
   position: relative;
   background: #ffffff;
-  padding: 5px 10px 5px 5px;
+  padding: 5px 30px 5px 5px;
   user-select: none;
   border-bottom: 1px solid #c3c3c3;
-  transition: all 0.05s;
-}
-
-.container.list ul li:nth-child(odd) {
-  background: #e0e0e0;
+  transition: all 0s;
 }
 
 .container.list ul li:hover {
   background: #eaeaea;
   transform: scale(1.03);
   box-shadow: 0 0 3px 0px #5d5d5d;
+  border-bottom: unset;
+  padding-bottom: 6px;
   z-index: 1;
+}
+
+.container.list ul li:nth-child(odd) {
+  background: #e0e0e0;
 }
 
 .container.list ul li:first-child {
@@ -528,6 +531,23 @@ p.empty {
   color: #ffffff;
   font-size: 13px;
   background: rgb(24 24 24 / 70%);
+}
+
+.container div.ranking {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  color: #fff;
+  background: #9e6620;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
 }
 
 .container.card div.badges {
