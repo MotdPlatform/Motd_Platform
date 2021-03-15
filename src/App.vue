@@ -68,6 +68,43 @@ export default {
 
   mounted() {
     this.guide = localStorage.getItem("auth") ? false : true;
+    
+    document.onkeydown = function () {
+      if (
+        window.event.keyCode == 116 || //屏蔽 F5
+        window.event.keyCode == 122 || //屏蔽 F11
+        (window.event.shiftKey && window.event.keyCode == 121) //shift+F10
+      ) {
+        window.event.keyCode = 0;
+        window.event.returnValue = false;
+      }
+      if (window.event.altKey && window.event.keyCode == 115) {
+        //屏蔽Alt+F4
+        window.showModelessDialog(
+          "about:blank",
+          "",
+          "dialogWidth:1px;dialogheight:1px"
+        );
+        return false;
+      }
+    };
+    if (window.Event) document.captureEvents(Event.MOUSEUP);
+    function nocontextmenu() {
+      event.cancelBubble = true;
+      event.returnValue = false;
+      return false;
+    }
+    function norightclick(e) {
+      if (window.Event) {
+        if (e.which == 2 || e.which == 3) return false;
+      } else if (event.button == 2 || event.button == 3) {
+        event.cancelBubble = true;
+        event.returnValue = false;
+        return false;
+      }
+    }
+    document.oncontextmenu = nocontextmenu; // for IE5+
+    document.onmousedown = norightclick; // for all others
   },
 
   methods: {
@@ -151,12 +188,12 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset006pxrgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
-  box-shadow: inset006pxrgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-scrollbar-thumb:window-inactive {
@@ -172,17 +209,19 @@ a:hover {
   color: #34aa2f;
 }
 
+strong {
+  color: rgb(52, 170, 47);
+  margin: auto 5px;
+}
+
 .background {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210309123813.jpg")
-    no-repeat;
-  background-color: #969696;
-  background-position: left;
-  background-size: cover;
+  background: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/ImgBedtp_out.gif");
+  background-color: #848484;
   background-blend-mode: overlay;
   z-index: -1;
 }
@@ -353,7 +392,7 @@ label {
   border-image-source: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/ImgBedpanel.png");
   overflow-x: hidden;
   overflow-y: overlay;
-  top: 20px;
+  top: 10px;
   z-index: 3;
 }
 
@@ -441,6 +480,7 @@ label {
 }
 
 .model div.header {
+  text-align: center;
   font-size: 28px;
 }
 
@@ -471,6 +511,36 @@ div.divider {
   border-radius: 4px;
   background-color: #ff4949;
   cursor: default;
+}
+
+.badge.border {
+  position: relative;
+  border-radius: 2px;
+  background: #484848;
+}
+
+.badge.border::before,
+.badge.border:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  height: 14px;
+  width: 3px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  background: #484848;
+}
+
+.badge.border:before {
+  left: -3px;
+  border-radius: 2px 0 0 2px;
+  border-left: 1px solid #fff;
+}
+
+.badge.border:after {
+  right: -3px;
+  border-radius: 0 2px 2px 0;
+  border-right: 1px solid #fff;
 }
 
 .badge.primary {
@@ -570,10 +640,105 @@ div.divider {
 }
 
 /* progress */
-.progress {
+.progress__label {
+  position: relative;
+  height: 10px;
+  z-index: 1;
+  top: 6px;
+  width: 100%;
+  text-align: center;
+  opacity: 0.4;
 }
 
-.progress-determinate {
+/* .progress {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+}
+
+.progress__bar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210312231817.png");
+  background-size: auto 100%;
+}
+
+.progress__determinate {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  background-image: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210312231822.png");
+  background-size: auto 100%;
+} */
+
+.kdui-mc-progress {
+  margin: 8px 0;
+}
+
+.kdui-mc-progress-success {
+  background-image: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313204628.png"),
+    url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313204424.png"),
+    url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313204601.png");
+}
+
+.kdui-mc-progress {
+  width: 100%;
+  height: 14px;
+  padding: 0 4px;
+  max-width: 100% !important;
+  background-size: contain;
+  background-position: left, center, right;
+  background-repeat: no-repeat, repeat-x, no-repeat;
+  background-clip: border-box, content-box, border-box;
+  background-image: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313204714.png"),
+    url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313204840.png"),
+    url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313204751.png");
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.kdui-mc-progress-success .kdui-mc-progress-determinate {
+  background-image: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313205000.png"),
+    url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313205117.png"),
+    url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313205130.png");
+}
+
+.kdui-mc-progress-determinate {
+  padding: 0 4px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  box-sizing: border-box;
+  max-width: 100% !important;
+  background-size: contain;
+  background-position: left, center, right;
+  background-repeat: no-repeat, repeat-x, no-repeat;
+  background-clip: border-box, content-box, border-box;
+  background-image: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313205142.png"),
+    url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313205158.png"),
+    url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313205206.png");
+}
+
+.kdui-mc-progress-exp::after {
+  content: "";
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 2px;
+  right: 2px;
+  z-index: 99999;
+  position: absolute;
+  box-sizing: border-box;
+  background-size: percentage;
+  background-clip: content-box;
+  background-image: url("https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13cead20210313205218.png");
 }
 
 /* transition */

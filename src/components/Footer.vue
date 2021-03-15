@@ -1,6 +1,6 @@
 <template>
   <div id="footer">
-    <div class="footer__cover"></div>
+    <!-- <div class="footer__cover"></div> -->
     <div class="footer__container">
       <p>友情链接：</p>
       <ul

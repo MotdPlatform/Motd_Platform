@@ -15,8 +15,8 @@
               <img
                 class="status"
                 src="https://cdn.jsdelivr.net/gh/pluginskers/ImgBed/c3b14ecc6c3882bdeb5ee4768f13ceadonline.gif"
-              />{{ i.delay }}ms
-              {{ i.motd }}
+              />
+              <span style="margin-right: 5px">{{ i.motd }}</span>
             </div>
             <div class="info">
               <div class="online">在线: {{ i.online }}/{{ i.max }}</div>
@@ -39,12 +39,23 @@
         class="model__wapper"
         v-if="info"
         v-show="InfoModelVisible"
+        @dblclick="InfoModelVisible = false"
       >
         <div class="model__cover" @click="InfoModelVisible = false"></div>
         <div id="model" class="model">
           <div class="header">
             {{ info.motd
-            }}<span style="color: #34aa2f;font-size: 16px;"> {{ info.delay }}ms</span>
+            }}<span
+              style="
+                position: fixed;
+                bottom: 2px;
+                right: 2px;
+                color: #ffffff;
+                font-size: 12px;
+              "
+            >
+              {{ info.delay }}ms</span
+            >
           </div>
           <div class="container card">
             <div>{{ info.ip }}:{{ info.port }}</div>
@@ -57,27 +68,61 @@
               <div class="badge warning gamemode">{{ info.gamemode }}</div>
               <div v-if="$parent.done" v-html="drawBadges(index)"></div>
             </div>
-            <transition name="fade">
-              <div class="auths" v-if="InfoAuthsDone">
-                <span>{{ info.tip }}</span>
-                <div
-                  class="players"
-                  v-show="info.players"
-                  v-html="info.players"
-                ></div>
-                <div
-                  class="plugins"
-                  v-show="info.plugins"
-                  v-html="info.plugins"
-                ></div>
-                <div
-                  :class="{ records: true, done: charts.el }"
-                  ref="records"
-                  :style="RecordsStyle"
-                ></div>
-                <div class="performance" v-show="info.performance"></div>
+            <div class="auths" v-show="InfoAuthsDone">
+              <span>{{ info.tip }}</span>
+              <div
+                class="players"
+                v-show="info.players"
+                v-html="info.players"
+              ></div>
+              <div
+                class="plugins"
+                v-show="info.plugins"
+                v-html="info.plugins"
+              ></div>
+              <div class="report" v-if="info.report">
+                <div>
+                  服务器最多有<strong>{{ info.report.online }}</strong
+                  >位玩家同时在线
+                </div>
+                <div>
+                  服务器延迟最高时有<strong
+                    >{{ info.report.delay.toFixed(0) }}ms</strong
+                  >
+                </div>
+                <div>
+                  服务器平均延迟有<strong
+                    >{{ info.report.avg.toFixed(0) }}ms</strong
+                  >
+                </div>
               </div>
-            </transition>
+              <div class="performance" v-if="info.performance">
+                <div>
+                  TPS:
+                  <strong>{{ info.performance.tps }}</strong>
+                  (该值越接近20服务器越流畅)
+                </div>
+                <div>{{ info.performance.tip }}</div>
+                <div>
+                  <div class="progress__label">
+                    负载占用: <strong>{{ info.performance.load }}</strong>
+                  </div>
+                  <div
+                    class="kdui-mc-progress kdui-mc-progress-success kdui-mc-progress-exp"
+                  >
+                    <div
+                      class="kdui-mc-progress-determinate"
+                      :style="{ width: info.performance.load }"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div
+                :class="{ records: true, done: charts.el }"
+                ref="records"
+                :style="RecordsStyle"
+              ></div>
+            </div>
             <transition name="fade">
               <div class="auths__loading" v-show="!InfoAuthsDone">
                 <font-awesome-icon class="loading" icon="sync-alt" /><span
@@ -173,14 +218,17 @@ export default {
 
           // 服务器负载
           let TmpPerformance = {
+            load: result["load"] + "%",
             tps: result["tps"],
-            load: result["load"],
+            tip:
+              result["tps"] >= 20
+                ? "服务器运行速度优秀！"
+                : "服务器正常运行中！",
           };
           if (TmpPerformance) {
-            // console.log(TmpPerformance);
+            this.info.performance = TmpPerformance;
           }
         }
-        this.InfoAuthsDone = true;
 
         // 统计图渲染
         this.fetchServerRecords();
@@ -206,9 +254,15 @@ export default {
           this.charts.record.online = result.r_online;
           this.charts.record.delay = result.r_delay;
 
+          this.info.report = {
+            online: Math.max.apply(null, this.charts.record.online),
+            delay: Math.max.apply(null, this.charts.record.delay),
+            avg: this.$utils.avg(this.charts.record.delay),
+          };
+
           // 统计图X轴项目
           this.charts.chartsX = [];
-          for (let i in result.r_online) {
+          for (let i in this.charts.record.online) {
             this.charts.chartsX[i] = `第${i}次检测`;
           }
 
@@ -256,6 +310,8 @@ export default {
             });
           }
         }
+
+        this.InfoAuthsDone = true;
       });
     },
 
@@ -309,16 +365,17 @@ export default {
 
   watch: {
     InfoModelVisible(v) {
-      if (v) {
-        this.msg = null;
-        this.charts.el = null;
-        clearTimeout(this.AuthLoader);
-      } else {
+      this.msg = null;
+      clearTimeout(this.AuthLoader);
+      if (!v) {
         setTimeout(() => {
+          this.charts.el = null;
           this.InfoAuthsDone = false;
-        }, 250);
+        }, 200);
       }
     },
+
+    InfoAuthsDone(v) {},
   },
 };
 </script>
@@ -329,9 +386,9 @@ p.empty {
 }
 
 .container.list {
-  margin: 35px auto 0 auto;
+  margin: 20px auto 0;
   border-radius: 5px 5px 0 0;
-  width: 90%;
+  width: 93%;
   max-width: 1000px;
 }
 
@@ -349,11 +406,18 @@ p.empty {
   padding: 5px 10px 5px 5px;
   user-select: none;
   border-bottom: 1px solid #c3c3c3;
+  transition: all 0.05s;
+}
+
+.container.list ul li:nth-child(odd) {
+  background: #e0e0e0;
 }
 
 .container.list ul li:hover {
-  background: #d4d4d4;
-  font-weight: 800;
+  background: #eaeaea;
+  transform: scale(1.03);
+  box-shadow: 0 0 3px 0px #5d5d5d;
+  z-index: 1;
 }
 
 .container.list ul li:first-child {
@@ -443,7 +507,6 @@ p.empty {
 }
 
 .container.list .status {
-  margin-right: 5px;
   position: relative;
   bottom: -2px;
 }
@@ -515,6 +578,10 @@ p.empty {
   content: "服务器负载";
 }
 
+.auths > .report:before {
+  content: "近七日分析";
+}
+
 .records:not(.done):after {
   content: "图表加载中";
   text-align: center;
@@ -530,13 +597,17 @@ p.empty {
 
 .auths__loading {
   position: absolute;
-  padding: 100px 0;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   text-align: center;
-  background: rgb(0 0 0 / 80%);
+  background: #383838;
   z-index: 2;
 }
 

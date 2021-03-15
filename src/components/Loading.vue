@@ -125,14 +125,14 @@ export default {
   100% {
     left: 59px;
     width: 40px;
-    background: #6c8745;
+    background: #42522c;
   }
   50% {
     top: 126px;
     left: 55px;
     width: 50px;
     height: 7px;
-    background: #42523c;
+    background: #45445c;
   }
 }
 

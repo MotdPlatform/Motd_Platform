@@ -43,7 +43,7 @@ export default {
 #alert {
   margin: 10px auto 0 auto;
   border-radius: 5px 5px 0 0;
-  width: 90%;
+  width: 97%;
   max-width: 1010px;
   cursor: default;
 }
@@ -51,7 +51,7 @@ export default {
 .container.alert {
   padding: 15px 10px;
   color: #fff;
-  background: rgba(20, 20, 20, 0.85);
+  background: rgba(20,20,20);
   border: 4px solid #fff;
   border-radius: 16px;
   border-image-width: 6px;
